@@ -7,15 +7,41 @@
             <div class="card">
                 <div class="card-header">{{ __('Test Case') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{route('postCase')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('postCase', $module_id)}}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{__(' Case Name' )}}</label>
                             <div class="col-md-6">
-                                <input id="Case_Name" name = "Case_Name" type="text" class="form-control @error('Case Name') is-invalid @enderror" name="Case_Name" value="{{ session()->has('Project_id') ? \App\Project::find(session()->get('Project_id'))->Project_Title : 'Project'}}" required autocomplete="Case Name" autofocus>
+                                <input id="Case_Name" name = "Case_Name" type="text" class="form-control @error('Case Name') is-invalid @enderror" name="Case_Name" value="{{ old('Case Name') }}" required autocomplete="Case Name" autofocus>
 
                                 @error('Case Name')
                                     <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Project_id" class="col-md-4 col-form-label text-md-right">{{__('Project Title' )}}</label>
+                            <div class="col-md-6">
+                                <input id="Project_id" type="text" class="form-control @error('Project_id') is-invalid @enderror" name="Project_id" required autocomplete="Project_id" value="{{ session()->has('Project_id') ? \App\Project::find(session()->get('Project_id'))->Project_Title : 'Project'}}" disabled>
+
+                                @error('Project Title')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="Module_Name" class="col-md-4 col-form-label text-md-right">{{__('Module Name' )}}</label>
+                            <div class="col-md-6">
+                                <input id="Module_id" type="text" class="form-control @error('Module_id') is-invalid @enderror" name="Module_id" required autocomplete="Module_id" value="{{ \App\Modul::find($module_id) ? \App\Modul::find($module_id)->Module_Name : 'Modul'}}" disabled>
+
+                                @error('Module Name')
+                                <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

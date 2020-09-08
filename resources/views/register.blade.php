@@ -20,7 +20,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>    
+                        </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -38,7 +38,11 @@
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                <input id="role" type="text" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="role">
+                            <select name = "role">
+                                    <option value ="0">Role</option>
+                                    <option value ="admin">admin</option>
+                                    <option value ="user">user</option>
+                                </select>
 
                                 @error('role')
                                     <span class="invalid-feedback" role="alert">

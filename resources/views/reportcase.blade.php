@@ -45,7 +45,7 @@
                         <a class="dropdown-item" href="{{route('selectProject', $record->id)}}">{{$record->Project_Title}}</a>
                         @endforeach
                         <div class="dropdown-divider"></div>
-                        <a href="{{route('ProjectReport')}}" class="dropdown-item">See All</a>
+                        <a href="{{route('ProjectReport')}}" class="fa fa-search">See All</a>
                       </div>
                     </li>
                   </div>
@@ -54,16 +54,16 @@
 
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+{{--    <form class="form-inline ml-3">--}}
+{{--      <div class="input-group input-group-sm">--}}
+{{--        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">--}}
+{{--        <div class="input-group-append">--}}
+{{--          <button class="btn btn-navbar" type="submit">--}}
+{{--            <i class="fas fa-search"></i>--}}
+{{--          </button>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </form>--}}
   </nav>
   <!-- /.navbar -->
 
@@ -87,51 +87,44 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-               <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Project
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-            @if(auth()->user()->role == 'admin')
-              <li class="nav-item">
-              <a href="{{route('project')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add New Project</p>
-                </a>
-              </li>
-            @endif
-              <li class="nav-item">
-                <a href="{{route('report')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Module Report</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          @if(auth()->user()->role == 'admin')
             <li class="nav-item">
-              <a href="{{route('register')}}" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
-                <p>Register</p>
-              </a>
+                <a href="{{route('ProjectReport')}}" class="nav-link">
+                    <i class="far fa-search nav-icon"></i>
+                    <p>See All</p>
+                </a>
             </li>
-          @endif
-          <li class="nav-item">
-            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+
+            <li class="nav-item">
+                <a href="{{route('report')}}"class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Module Report</p>
+                </a>
+            </li>
+            @if(auth()->user()->role == 'admin')
+                <li class="nav-item">
+                    <a href="{{route('register')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
+                        <p>Register</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('profile')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Data User</p>
+                    </a>
+                </li>
+            @endif
+            <li class="nav-item">
+                <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
-              <i class="nav-icon fas fa-times"></i>
-              <p>Logout</p>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-            </form>
-          </li>
+                    <i class="nav-icon fas fa-times"></i>
+                    <p>Logout</p>
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -171,7 +164,7 @@
          @if(auth()->user()->role == 'admin')
 
          <div class="pull-right">
-                      <a href="{{route('case')}}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add New Case</a> </a>
+                      <a href="{{route('case', $module_id)}}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add New Case</a> </a>
                       <a href="{{route('trashCase')}}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Recycle Bin</a> </a>
                   </div>
 
@@ -244,7 +237,7 @@
     $("#report").DataTable({
         "processing": true,
         "serverSide": true,
-        "ajax": "{{route('report.getReportCase')}}",
+        "ajax": "{{route('report.getReportCase', $module_id)}}",
         "columns": [
             {data: 'Modul_id', orderable: false},
             {data: 'Case_Name', orderable: false},

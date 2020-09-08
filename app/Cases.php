@@ -11,7 +11,7 @@ class Cases extends Model
 {
     use Notifiable;
     protected $fillable = [
-       'Case_Name', 'Des_case', 'Bug_Priority', 'Bug_Status','file_path','Modul_id'
+       'Case_Name', 'Des_case', 'Bug_Priority', 'Bug_Status','file_path','Modul_id', 'namaFile'
     ];
     public $timestamps = true;
 

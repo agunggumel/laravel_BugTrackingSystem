@@ -40,7 +40,7 @@
                     </a>
                       <span class="sr-only">Toggle Dropdown</span>
                       <div class="dropdown-menu" role="menu">
-                      @foreach (getProjects() as $record) 
+                      @foreach (getProjects() as $record)
                         <a class="dropdown-item" href="{{route('module.show', $Modul ?? 'id')}}">{{$record->Project_Title}}</a>
                         @endforeach
                         <div class="dropdown-divider"></div>
@@ -52,16 +52,16 @@
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+{{--    <form class="form-inline ml-3">--}}
+{{--      <div class="input-group input-group-sm">--}}
+{{--        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">--}}
+{{--        <div class="input-group-append">--}}
+{{--          <button class="btn btn-navbar" type="submit">--}}
+{{--            <i class="fas fa-search"></i>--}}
+{{--          </button>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </form>--}}
   </nav>
   <!-- /.navbar -->
 
@@ -117,8 +117,14 @@
               <a href="{{route('register')}}" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>Register</p>
-              </a>  
+              </a>
             </li>
+                <li class="nav-item">
+                    <a href="{{route('report')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Data User</p>
+                    </a>
+                </li>
           @endif
           <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
@@ -156,7 +162,7 @@
       </div><!-- /.container-fluid -->
     </section>
 
-      
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -170,7 +176,7 @@
                   </div>
              <form method="POST" action="{{route('postReport')}}">
              @csrf
-             
+
           </form>
 
               <div class="card-body">

@@ -54,16 +54,16 @@
 
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+{{--    <form class="form-inline ml-3">--}}
+{{--      <div class="input-group input-group-sm">--}}
+{{--        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">--}}
+{{--        <div class="input-group-append">--}}
+{{--          <button class="btn btn-navbar" type="submit">--}}
+{{--            <i class="fas fa-search"></i>--}}
+{{--          </button>--}}
+{{--        </div>--}}
+{{--      </div>--}}
+{{--    </form>--}}
   </nav>
   <!-- /.navbar -->
 
@@ -121,6 +121,13 @@
                 <p>Register</p>
               </a>
             </li>
+
+                <li class="nav-item">
+                    <a href="{{route('report')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Data User</p>
+                    </a>
+                </li>
           @endif
           <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();

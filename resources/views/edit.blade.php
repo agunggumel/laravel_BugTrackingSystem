@@ -9,10 +9,11 @@
                 <div class="card-body">
                     <form method="POST" action="{{route('Case.update', $Cases->id)}}" enctype="multipart/form-data">
                         @csrf
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{__(' Case Name' )}}</label>
                             <div class="col-md-6">
-                                <input id="Case_Name" name = "Case_Name" type="text" class="form-control @error('Case Name') is-invalid @enderror" name="Case_Name" value="{{ old('Case_Name') ?? $Cases->Case_Name }}" required autocomplete="Case Name" autofocus>
+                                <input id="Case_Name" name = "Case_Name" type="text" class="form-control @error('Case Name') is-invalid @enderror" name="Case_Name" value="{{ old('Case_Name') ?? $Cases->Case_Name }}" required autocomplete="Case Name" autofocus readonly>
 
                                 @error('Case Name')
                                     <span class="invalid-feedback" role="alert">
@@ -22,27 +23,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="Bug Priority" class="col-md-4 col-form-label text-md-right">{{ __('Bug Priority') }}</label>
-
-                            <div class="col-md-6">
-                                    <!-- split buttons box -->
-                                <select name = "Bug_Priority">
-                                    <option value ="0">Bug Priority</option>
-                                    <option value ="Emergency">Emergency</option>
-                                    <option value ="Urgent">Urgent</option>
-                                    <option value ="Standard">Standard</option>
-                                    <option value ="Normal">Normal</option>
-
-                                </select>
-
-                                @error('Bug Priority')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                       <div class="form-group row">
+                           <label for="name" class="col-md-4 col-form-label text-md-right">{{__(' Bug Priority' )}}</label>
+                           <div class="col-md-6">
+                           <input type="text" name="Bug_Priority" class="form-control"
+                                    value="{{old('Bug_Priority') ?? $Cases->Bug_Priority}}" readonly>
+                           </div>
+                       </div>
 
                         <div class="form-group row">
                             <label for="Bug Priority" class="col-md-4 col-form-label text-md-right">{{ __('Bug Status') }}</label>
@@ -74,7 +61,7 @@
 
                     <div class="col-md-6">
 
-                        <input id="Des_case" name = "Des_case" type="text" class="form-control @error('Des_case') is-invalid @enderror" name="Des_case" value="{{ old('Des_case') ?? $Cases->Des_case }}" required autocomplete="Des_case" autofocus>
+                        <input id="Des_case" name = "Des_case" type="text" class="form-control @error('Des_case') is-invalid @enderror" name="Des_case" value="{{ old('Des_case') ?? $Cases->Des_case }}" required autocomplete="Des_case" autofocus readonly>
 
                         @error('Des_case')
                             <span class="invalid-feedback" role="alert">
@@ -95,7 +82,12 @@
                         <br>
                         <br>
                         <div class="form-group row mb-0">
-                            <input type="file" name="featured_image" id="featured_image" class="form-control"><br>
+                            <input type="text" name="namaFile"  class="form-control"
+                            value="{{old('namaFile') ?? $Cases->namaFile}}" readonly>
+                            <br>
+                            <div class="custom-file">
+                                <input type="file" name="file" class="form-control-sidebar">
+                            </div>
                             <button type="submit" class="btn btn-dark form-control">Upload Now</button>
                         </div>
                     </form>

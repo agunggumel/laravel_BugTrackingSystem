@@ -24,6 +24,7 @@ class CreateCasesTable extends Migration
             $table->string('file_path')->nullable();
             $table->foreign('Project_id')->references('id')->on('projects');
             $table->foreign('Modul_id')->references('id')->on('moduls');
+            $table->string('namaFile');
             $table->timestamps();
             $table->softDeletes();
         });

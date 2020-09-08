@@ -45,26 +45,21 @@
             </li>
 
                 <!-- split buttons box -->
-                <div class="card">
-                <!-- Split button -->
-                  <div class="btn-group">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                    {{ session()->has('Project_id') ? \App\Project::find(session()->get('Project_id'))->Project_Title : 'Project'}} <span class="caret"></span>
-                    </a>
-
-                      <span class="sr-only">Toggle Dropdown</span>
-                      <div class="dropdown-menu" role="menu">
-                        @foreach (getProjects() as $record)
+        <div class="btn-group">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                    Project <span class="caret"></span>
+                </a>
+                <span class="sr-only">Toggle Dropdown</span>
+                <div class="dropdown-menu" role="menu">
+                    @foreach (getProjects() as $record)
                         <a class="dropdown-item" href="{{ route('selectProject', $record->id) }}">{{$record->Project_Title}}</a>
-                        @endforeach
-
-                          <div class="dropdown-divider"></div>
-                        <a href="{{route('ProjectReport')}}" class="dropdown-item">See All</a>
-                      </div>
-                    </li>
-                  </div>
-
+                    @endforeach
+                    <div class="dropdown-divider"></div>
+                    <a href="{{route('project')}}" class="dropdown-item">See All</a>
+                </div>
+            </li>
+        </div>
     </ul>
 
     <!-- Right navbar links -->
@@ -101,38 +96,31 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Project
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
 
-            <ul class="nav nav-treeview">
-            @if(auth()->user()->role == 'admin')
               <li class="nav-item">
-              <a href="{{route('project')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add New Project</p>
+              <a href="{{route('ProjectReport')}}" class="nav-link">
+                  <i class="far fa-search nav-icon"></i>
+                  <p>See All</p>
                 </a>
               </li>
-            @endif
+
               <li class="nav-item">
                 <a href="{{route('report')}}"class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Module Report</p>
                 </a>
               </li>
-            </ul>
-          </li>
-
         @if(auth()->user()->role == 'admin')
         <li class="nav-item">
             <a href="{{route('register')}}" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>Register</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('profile')}}" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>Data User</p>
             </a>
         </li>
         @endif
