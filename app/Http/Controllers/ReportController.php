@@ -27,7 +27,11 @@ class ReportController extends Controller
     public function getReport()
     {
 //        $user = user::select('id','name');
-        $Modul = Modul::with('project')->select('id','Project_id', 'Module_Name', 'Description', 'created_at');
+        if (session()->has('Project_id')) {
+            $Modul = Modul::with('project')->select('id','Project_id', 'Module_Name', 'Description', 'created_at')->where('Project_id', session()->get('Project_id'));
+        } else {
+            $Modul = Modul::with('project')->select('id','Project_id', 'Module_Name', 'Description', 'created_at');
+        }
         return DataTables::of($Modul)
             ->editColumn('created_at', function ($Modul){
                 return Carbon::parse($Modul->created_at,'Asia/Jakarta')->format('d-m-Y');
@@ -77,13 +81,13 @@ class ReportController extends Controller
                 return Carbon::parse($Modul->created_at,'Asia/Jakarta')->format('d-m-Y');
             })
             ->editColumn('Project_id', function($Modul) {
-                return $Modul->project->name;
+                return $Modul->project ? $Modul->project->Project_Title : '';
             })
 
             ->addColumn('action', function ($Modul) {
                 $result = '';
                 $result .= '<a href="'.route('report.restore',$Modul->id).'" class="btn btn-success btn-sm"><i class="fa fa-trash-restore"></i></a>';
-                $result .= '<a href="'.route('report.deleted',$Modul->id).'" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>';
+
                 return $result;
             })
             ->make(true);

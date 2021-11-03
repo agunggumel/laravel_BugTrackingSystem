@@ -25,7 +25,7 @@ class profileController extends Controller
             ->addColumn('action', function ($user) {
                 $result = '';
                 if (auth()->user()->id != $user->id) {
-                    $result .= '<a href="' . route('profile.delete', $user->id) . '" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></a> &nbsp';
+                    $result .= '<a href="' . route('profile.delete', $user->id) . '" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> &nbsp';
                 }
                 return $result;
             })
@@ -49,7 +49,7 @@ class profileController extends Controller
             })
             ->addColumn('action', function ($user){
                 $result = '';
-                $result .= '<a href="' .route('profile.restore', $user->id) . ' " class="btn btn-success btn-sm"><i class="fa fa-restore"></i></a>';
+                $result .= '<a href="' .route('profile.restore', $user->id) . ' " class="btn btn-success btn-sm"><i class="fa fa-trash-restore"></i></a>';
                 return $result;
             })
         ->make(true);

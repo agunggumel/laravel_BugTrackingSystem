@@ -9,6 +9,21 @@
                 <div class="card-body">
                     <form method="POST" action="{{route('postCase', $module_id)}}" enctype="multipart/form-data">
                         @csrf
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                        @endif
+
+                        @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{__(' Case Name' )}}</label>
                             <div class="col-md-6">
@@ -53,9 +68,10 @@
                             <label for="Bug Priority" class="col-md-4 col-form-label text-md-right">{{ __('Bug Priority') }}</label>
 
                             <div class="col-md-6">
+
                                     <!-- split buttons box -->
                                 <select name = "Bug_Priority">
-                                    <option value ="0">Bug Priority</option>
+                                    <option value ="">Select Bug Priority</option>
                                     <option value ="Emergency">Emergency</option>
                                     <option value ="Urgent">Urgent</option>
                                     <option value ="Standard">Standard</option>
@@ -72,12 +88,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="Bug Priority" class="col-md-4 col-form-label text-md-right">{{ __('Bug Status') }}</label>
+                            <label for="Bug Status" class="col-md-4 col-form-label text-md-right">{{ __('Bug Status') }}</label>
 
                             <div class="col-md-6">
                                     <!-- split buttons box -->
                                     <select name = "Bug_Status">
-                                    <option value ="0">Bug Status</option>
+                                    <option value ="">Select Bug Status</option>
                                     <option value ="Not Started">Not Started</option>
                                     <option value ="In Progress">In Progress</option>
                                     <option value ="Finished">Finished</option>
@@ -92,14 +108,9 @@
                             </div>
                         </div>
 
-
-
                          <div class="form-group row">
-
                             <label for="Bug" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
-
                             <div class="col-md-6">
-
                                 <input id="Des_case" name = "Des_case" type="text" class="form-control @error('Des_case') is-invalid @enderror" name="Des_case" value="{{ old('Des_case') }}" required autocomplete="Des_case" autofocus>
 
                                 @error('Des_case')
@@ -108,9 +119,7 @@
                                     </span>
                                 @enderror
                             </div>
-                            </div>
-
-
+                         </div>
 
                         <div class="custom-file">
 

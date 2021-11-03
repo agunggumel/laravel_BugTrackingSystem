@@ -9,6 +9,7 @@ use DataTables;
 use App\file;
 use App\Project;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class CaseController extends Controller
         return view ('case', compact('module_id'));
     }
 
-    public function reportcase(){
+    public function Reportcase(){
         $reports = Cases::with('module')->get();
 
         return view('reportcase');
@@ -37,10 +38,11 @@ class CaseController extends Controller
             })
             ->addColumn('action', function ($Cases) {
                 $result = '';
-                $result .= '<a target="_blank" href="'.asset(Storage::url($Cases->file_path)).'" class="btn btn-success btn-sm"><i class="fa fa-search"></i></a>';
-                $result .= '<a href="'.route('Case.edit',$Cases->id).'" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>';
+                $result .= '<a href="'.route('Case.detail',$Cases->id).'" class="btn btn-success btn-sm"><i class="fa fa-search "></i></a> &nbsp';
+                $result .= '<a href="'.route('Case.edit',$Cases->id).'" class="btn btn-primary btn-sm"><i class="fa fa-edit "></i></a> &nbsp';
+
                 if (Auth::user()->role=='admin') {
-                    $result .= '<a href="' . route('Case.delete', $Cases->id) . '" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>';
+                    $result .= '<a href="' . route('Case.delete', $Cases->id) . '" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> &nbsp';
                 }
                 return $result;
             })
@@ -51,11 +53,15 @@ class CaseController extends Controller
 
         $validator = Validator::make($request->all(), [
             'Case_Name' => 'required',
+            'Bug_Priority' => 'required',
+            'Bug_Status' => 'required',
+            'featured_image' => 'mimes:jpeg,png,jpg|max:2048'
         ]);
 
         if ($validator->fails()) {
             return redirect()->route('case', $module_id)
-                ->withInput()->withErrors();
+                ->withErrors($validator)
+                ->withInput();
         }
 
         $data = new Cases();
@@ -65,8 +71,7 @@ class CaseController extends Controller
             $filePath = $request->file('featured_image')->storeAs('uploads',$FileName, 'public');
 
             $data->file_path = $filePath;
-            $data->namaFile =$FileName;
-
+            $data->namaFile = $FileName;
         }
 
         $data->Modul_id = $module_id;
@@ -80,7 +85,7 @@ class CaseController extends Controller
         return redirect()->route('case.show', $module_id);
     }
     public function show($id){
-        return view('reportcase', [
+        return view('reportcase',[
             'module_id' => $id
         ]);
     }
@@ -102,10 +107,13 @@ class CaseController extends Controller
     {
         $Cases = Cases::onlyTrashed();
         return DataTables::of($Cases)
+            ->editColumn('Modul_id', function($Cases) {
+                return $Cases->module ? $Cases->module->Module_Name : '';
+            })
             ->addColumn('action', function ($Cases) {
                 $result = '';
                 $result .= '<a href="'.route('Case.restore',$Cases->id).'" class="btn btn-success btn-sm"><i class="fa fa-trash-restore"></i></a>';
-                $result .= '<a href="'.route('Case.delete',$Cases->id).'" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>';
+
                 return $result;
             })
             ->make(true);
@@ -115,7 +123,7 @@ class CaseController extends Controller
     public function restore($id){
         $Cases = Cases::onlyTrashed()->where('id',$id);
         $Cases->restore();
-        return view('reportcase');
+        return back();
     }
 
 
@@ -130,16 +138,29 @@ class CaseController extends Controller
         ]);
     }
 
+    public function detail($id){
+        $Cases = Cases::findOrFail($id);
+        return view('show', compact('Cases'),[
+            'Cases' =>$Cases
+        ]);
+    }
+
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'featured_image' => 'mimes:jpeg, png, jpg|max:7000'
+        $validator = Validator::make($request->all(), [
+            'featured_image' => 'mimes:jpeg,png,jpg|max:2048'
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('report')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $Cases = Cases::findOrFail($id);
 
-        if($request->file()){
-            $FileName = time().'_'.$request->featured_image->getClientOriginalName();
+        if($request->hasFile('file')){
+            $FileName = time().'_'.$request->file('featured_image')->getClientOriginalName();
             $filePath = $request->file('featured_image')->storeAs('uploads',$FileName, 'public');
 
             $Cases->file_path = $filePath;
@@ -153,9 +174,10 @@ class CaseController extends Controller
         $Cases->Des_case = $request->input('Des_case');
         //$data->roles_id = DB::table('master')->select('id')->where('level','admin')->first();
         $Cases->save();
-        return view('reportcase');
+        return view('report');
 
     }
+
 
 
 }

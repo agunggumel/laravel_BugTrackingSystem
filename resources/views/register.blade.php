@@ -39,7 +39,7 @@
 
                             <div class="col-md-6">
                             <select name = "role">
-                                    <option value ="0">Role</option>
+                                    <option value ="">Role</option>
                                     <option value ="admin">admin</option>
                                     <option value ="user">user</option>
                                 </select>

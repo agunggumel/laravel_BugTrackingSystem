@@ -10,12 +10,12 @@ use DataTables;
 
 class ProjectController extends Controller
 {
-    public function Project($id)
+    public function Project()
     {
         return view('project');
     }
 
-    public function ProjectReport($id)
+    public function ProjectReport()
     {
         return view('reportproject');
     }
@@ -34,12 +34,12 @@ class ProjectController extends Controller
         if (Project::count() == 1) {
             session()->put('Project_id', $data->id);
         }
-        return view('report');
+        return view('reportproject');
     }
 
-    public function getReportProject($id)
+    public function getReportProject()
     {
-        $data = Project::select('id', 'Project_Title', 'Owner_Name', 'Description')->where('id',$id);
+        $data = Project::select('id', 'Project_Title', 'Owner_Name', 'Description');
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 $result = '';
@@ -69,7 +69,7 @@ class ProjectController extends Controller
             session()->put('Project_id', $id);
 
         }
-        return redirect('report');
+        return view('report');
     }
 
     public function update(Request $request, $id)

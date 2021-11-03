@@ -45,20 +45,26 @@
             </li>
 
                 <!-- split buttons box -->
-        <div class="btn-group">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-                    Project <span class="caret"></span>
-                </a>
-                <span class="sr-only">Toggle Dropdown</span>
-                <div class="dropdown-menu" role="menu">
-                    @foreach (getProjects() as $record)
-                        <a class="dropdown-item" href="{{ route('selectProject', $record->id) }}">{{$record->Project_Title}}</a>
-                    @endforeach
-                    <div class="dropdown-divider"></div>
-                    <a href="{{route('project')}}" class="dropdown-item">See All</a>
-                </div>
-            </li>
+        <!-- split buttons box -->
+        <div class="card">
+            <!-- Split button -->
+            <div class="btn-group">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                        {{ session()->has('Project_id') ? \App\Project::find(session()->get('Project_id'))->Project_Title : 'Project'}}
+                        <span class="caret"></span>
+                    </a>
+                    <span class="sr-only">Toggle Dropdown</span>
+                    <div class="dropdown-menu" role="menu">
+                        @foreach (getProjects() as $record)
+                            <a class="dropdown-item"
+                               href="{{route('selectProject', $record->id)}}">{{$record->Project_Title}}</a>
+                        @endforeach
+                        <div class="dropdown-divider"></div>
+                        <a href="{{route('ProjectReport')}}" class="dropdown-item">See All</a>
+                    </div>
+                </li>
+            </div>
         </div>
     </ul>
 
@@ -87,7 +93,9 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block">{{Auth::User()->name}}</a>
+          <a href="{{ route('home') }}" class="d-block">{{Auth::User()->name}}</a>
+
+
         </div>
       </div>
 
@@ -99,14 +107,14 @@
 
               <li class="nav-item">
               <a href="{{route('ProjectReport')}}" class="nav-link">
-                  <i class="far fa-search nav-icon"></i>
-                  <p>See All</p>
+                  <i class="far fa-file nav-icon"></i>
+                  <p>Projects</p>
                 </a>
               </li>
 
               <li class="nav-item">
-                <a href="{{route('report')}}"class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <a href="{{route('report')}}"class="nav-link">
+                  <i class="far fa-file nav-icon"></i>
                   <p>Module Report</p>
                 </a>
               </li>
@@ -119,7 +127,7 @@
         </li>
         <li class="nav-item">
             <a href="{{route('profile')}}" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-address-book "></i>
                 <p>Data User</p>
             </a>
         </li>
@@ -152,7 +160,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.5
     </div>
-    <strong>Copyright &copy; 2019-2020 <a href="#"></strong> All rights
+      <strong>Copyright &copy; 2019-2020 <a href="#"></a></strong> All rights
     reserved.
   </footer>
 </div>

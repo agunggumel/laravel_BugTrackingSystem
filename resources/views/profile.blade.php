@@ -35,31 +35,35 @@
                 <!-- Split button -->
                 <div class="btn-group">
                     <li class="nav-item dropdown">
-
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                            {{ session()->has('Project_id') ? \App\Project::find(session()->get('Project_id'))->Project_Title : 'Project'}}
+                            <span class="caret"></span>
+                        </a>
                         <span class="sr-only">Toggle Dropdown</span>
                         <div class="dropdown-menu" role="menu">
                             @foreach (getProjects() as $record)
-                                <a class="dropdown-item" href="{{route('selectProject', $record->id)}}">{{$record->Project_Title}}</a>
+                                <a class="dropdown-item"
+                                   href="{{route('selectProject', $record->id)}}">{{$record->Project_Title}}</a>
                             @endforeach
                             <div class="dropdown-divider"></div>
                             <a href="{{route('ProjectReport')}}" class="dropdown-item">See All</a>
                         </div>
                     </li>
                 </div>
-
+            </div>
         </ul>
 
         <!-- SEARCH FORM -->
-{{--        <form class="form-inline ml-3">--}}
-{{--            <div class="input-group input-group-sm">--}}
-{{--                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">--}}
-{{--                <div class="input-group-append">--}}
-{{--                    <button class="btn btn-navbar" type="submit">--}}
-{{--                        <i class="fas fa-search"></i>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </form>--}}
+        {{--        <form class="form-inline ml-3">--}}
+        {{--            <div class="input-group input-group-sm">--}}
+        {{--                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">--}}
+        {{--                <div class="input-group-append">--}}
+        {{--                    <button class="btn btn-navbar" type="submit">--}}
+        {{--                        <i class="fas fa-search"></i>--}}
+        {{--                    </button>--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--        </form>--}}
     </nav>
     <!-- /.navbar -->
 
@@ -82,20 +86,21 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-{{--                    <li class="nav-item has-treeview">--}}
-                                <li class="nav-item">
-                                    <a href="{{route('ProjectReport')}}" class="nav-link">
-                                        <i class="far fa-search nav-icon"></i>
-                                        <p>See All</p>
-                                    </a>
-                                </li>
+                    {{--                    <li class="nav-item has-treeview">--}}
+                    <li class="nav-item">
+                        <a href="{{route('ProjectReport')}}" class="nav-link">
+                            <i class="far fa-file nav-icon"></i>
+                            <p>Projects</p>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
-                        <a href="{{route('report')}}"class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
+                        <a href="{{route('report')}}" class="nav-link">
+                            <i class="far fa-file nav-icon"></i>
                             <p>Module Report</p>
                         </a>
                     </li>
@@ -109,7 +114,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('profile')}}" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
+                                <i class="nav-icon fas fa-address-book"></i>
                                 <p>Data User</p>
                             </a>
                         </li>
@@ -158,8 +163,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                              <a href="{{Route('profile.trash')}}">Recycle Bin</a>
-
+                                <a href="{{route('profile.trash')}}" class="btn btn-primary btn-sm"> <i
+                                        class="fa fa-plus"></i> Recycle Bin</a></a>
                                 <div class="card-body">
                                     <table id="profileTrash" class="table table-bordered table-striped">
                                         <thead>
@@ -191,7 +196,7 @@
         <div class="float-right d-none d-sm-block">
             <b>Version</b> 3.0.5
         </div>
-        <strong>Copyright &copy; 2019-2020 <a href="#"></strong> All rights
+        <strong>Copyright &copy; 2019-2020 <a href="#"></a></strong> All rights
         reserved.
     </footer>
 
@@ -215,7 +220,7 @@
 <script src="/js/demo.js"></script>
 <!-- page script -->
 <script>
-    $().ready(function(){
+    $().ready(function () {
         $("#profileTrash").DataTable({
             "processing": true,
             "serverSide": true,
@@ -225,7 +230,7 @@
                 {data: 'email', orderable: false},
                 {data: 'role', orderable: false},
                 {data: 'created_at', orderable: false},
-                {data: 'action', orderable: false, width:'10%', searcheble: false, classname: 'center action'}
+                {data: 'action', orderable: false, width: '10%', searcheble: false, classname: 'center action'}
 
             ]
         });

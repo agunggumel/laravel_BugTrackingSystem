@@ -44,7 +44,7 @@
                         <a class="dropdown-item" href="{{ route('selectProject', $record->id) }}">{{$record->Project_Title}}</a>
                         @endforeach
                         <div class="dropdown-divider"></div>
-                        <a href="{{route('project')}}" class="dropdown-item">See All</a>
+                        <a href="{{route('ProjectReport')}}" class="dropdown-item">See All</a>
                       </div>
                     </li>
                   </div>
@@ -78,7 +78,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block">{{Auth::User()->name}}</a>
+          <a href="{{route('home')}}" class="d-block">{{Auth::User()->name}}</a>
         </div>
       </div>
 
@@ -87,14 +87,14 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
                 <a href="{{route('ProjectReport')}}" class="nav-link">
-                    <i class="far fa-search nav-icon"></i>
-                    <p>See All</p>
+                    <i class="far fa-file nav-icon"></i>
+                    <p>Projects</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="{{route('report')}}"class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
+                    <a href="{{route('report')}}"class="nav-link">
+                    <i class="far fa-file nav-icon"></i>
                     <p>Module Report</p>
                 </a>
             </li>
@@ -108,7 +108,7 @@
             </li>
                 <li class="nav-item">
                     <a href="{{route('profile')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
+                        <i class="far fa-address-book nav-icon"></i>
                         <p>Data User</p>
                     </a>
                 </li>
@@ -225,7 +225,7 @@
     $("#report").DataTable({
         "processing": true,
         "serverSide": true,
-        "ajax": "{{route('report.getReportProject',$id)}}",
+        "ajax": "{{route('report.getReportProject')}}",
         "columns": [
             {data: 'Project_Title', orderable: false},
             {data: 'Owner_Name', orderable: false},

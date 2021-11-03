@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,26 +23,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="454f713e-e47d-4d1d-9a4a-1589c4453b86" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/editproject.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/trashProfile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Cases.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cases.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ModuleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ModuleController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProjectController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RegisterController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReportController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/profileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/profileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_08_18_072451_create_cases_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_08_18_072451_create_cases_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/case.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/case.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/casedetail.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/register.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/report.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/reportcase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reportcase.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/reportproject.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/reportproject.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/trash.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/trash.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/trashCase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/trashCase.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/trashProfile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/trashProfile.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,11 +171,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Sharing" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\cican\resources\views" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -190,7 +197,11 @@
       <option name="presentableId" value="Default" />
       <updated>1599296386990</updated>
       <workItem from="1599296388930" duration="21133000" />
-      <workItem from="1599451363554" duration="16356000" />
+      <workItem from="1599451363554" duration="16851000" />
+      <workItem from="1599536965410" duration="18681000" />
+      <workItem from="1599621642425" duration="14514000" />
+      <workItem from="1599708200395" duration="9254000" />
+      <workItem from="1599797609924" duration="1194000" />
     </task>
     <servers />
   </component>
@@ -218,9 +229,17 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1599458692563" />
-    <state x="347" y="73" width="587" height="534" key="find.popup" timestamp="1599470954348">
+    <state x="458" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599536177894">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="347" y="73" width="587" height="534" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1599470954348" />
+    <state x="458" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1599536177894" />
+    <state x="347" y="73" width="587" height="534" key="find.popup" timestamp="1599637024040">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="347" y="73" width="587" height="534" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1599637024040" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1599713323625">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1599713323625" />
   </component>
 </project>

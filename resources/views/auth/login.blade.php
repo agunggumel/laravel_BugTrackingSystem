@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sharing Knowledge | Log in</title>
+  <title>Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -70,7 +70,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
@@ -88,10 +88,10 @@
         </div>
       </form>
 
-      
+
       <!-- /.social-auth-links -->
 
-      
+
     </div>
     <!-- /.login-card-body -->
   </div>
